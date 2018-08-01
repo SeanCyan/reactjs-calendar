@@ -11,16 +11,16 @@ class Calendar extends React.Component{
 
     // Header
 
-    nextMnth = () => {
+    onClick = (e) => {
+        if (e.target.classList.contains('arrow-f')) {
         this.setState({
             currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
-        });
-    } 
-
-    prevMnth = () => {
+        })
+        } else {
         this.setState({
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
         });
+        }
     }
 
     header() {
@@ -29,13 +29,13 @@ class Calendar extends React.Component{
         return(
             <div className="flex-row head">
                 <div>
-                    <div className="material-icons arrow" onClick={this.prevMnth}>arrow_back_ios</div>
+                    <div className="material-icons arrow-b" onClick={this.onClick}>arrow_back_ios</div>
                 </div>
                 <div className="month">
                     {dateFns.format(this.state.currentMonth, dateFormat)}
                 </div>
                 <div>
-                    <div className="material-icons arrow" onClick={this.nextMnth}>arrow_forward_ios</div>
+                    <div className="material-icons arrow-f" onClick={this.onClick}>arrow_forward_ios</div>
                 </div>
             </div>
      )

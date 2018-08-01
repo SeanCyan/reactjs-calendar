@@ -45,17 +45,12 @@ body {
     text-align: center;
 }
 
-.arrow {
+.arrow-f, .arrow-b {
     cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
-
-.arrow:hover {
-    color: white;
-}
-
 
 /* day headings */
 
