@@ -19,10 +19,25 @@ body {
 }
 
 .grid {
+    display: -ms-grid;
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: auto;
-    height: calc(100vh - 240px);
+    height: calc(100vh - 95px);
+    min-height: 400px;
+}
+
+@media all and (min-width: 768px) {
+    .grid {
+        height: calc(100vh - 160px);
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .grid {
+        height: calc(100vh - 240px);
+        min-height: 400px;
+    }
 }
 
 /* header */
@@ -35,13 +50,13 @@ body {
 }
 
 .head > div {
-    padding: 0 50px;
+    padding: 0 30px;
 }
 
 .month {
     font-family: 'Do Hyeon', sans-serif;
-    font-size: 6rem;
-    width: 580px;
+    font-size: 1.75rem;
+    width: 480px;
     text-align: center;
 }
 
@@ -52,12 +67,45 @@ body {
     transform: translateY(-50%);
 }
 
+@media all and (min-width: 768px) {
+
+    .head > div {
+        padding: 0 50px;
+    }
+        
+    .month {
+        font-size: 4rem;
+    }
+
+}
+
+@media all and (min-width: 1200px) {
+
+    .month {
+        font-size: 6rem;
+        width: 580px;
+    }
+
+}
+
 /* day headings */
 
 .days {
     width: 100%;
-    margin: 50px 0px;
+    margin: 20px 0px;
     text-align: center;
+}
+
+@media all and (min-width: 768px) {
+    .days {
+         margin: 30px 0px;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .days {
+        margin: 50px 0px;
+   }
 }
 
 /* cells */
@@ -73,10 +121,10 @@ body {
     flex: 1;
     text-align: center;
     height: 100%;
-    font-size: 1.75em;
+    font-size: 1em;
     border-right: solid 1px rgba(255,255,255,0.6);
     border-top: solid 1px rgba(255,255,255,0.6);
-    transition: 0.5s ease-out;
+    transition: 0.25s ease-out;
 }
 
 .cell:hover {
@@ -94,7 +142,19 @@ body {
 .disabled {
     background-color: rgba(255,255,255,0.6);
     pointer-events: none;
-  }
+}
+
+@media all and (min-width: 768px) {
+.cell {
+    font-size: 1.25em;
+    }
+}
+
+@media all and (min-width: 1200px) {
+.cell {
+    font-size: 1.75em;
+    }
+}
 
   /* color changer */
 
