@@ -221,3 +221,19 @@ body {
     background: linear-gradient(to right, #4CA1AF
     , #C4E0E5);
   }
+
+  /* text cells */
+
+  .appt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    resize: none;
+    font-family: inherit;
+    background-color: rgba(255, 255, 255, 0);
+    height: 60%;
+    width: 100%;    
+    color: #fff;
+}
