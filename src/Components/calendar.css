@@ -19,10 +19,6 @@ body {
 }
 
 .grid {
-    display: -ms-grid;
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: auto;
     height: calc(100vh - 95px);
     min-height: 400px;
 }
@@ -129,7 +125,7 @@ body {
 
 .cell:hover {
     cursor: pointer;
-    background-color: rgb(57, 57, 126);
+    background-color: rgba(32, 32, 32, 0.4);
     transition: 0.25s ease-out;
 }
 
@@ -137,6 +133,10 @@ body {
     position: absolute;
     top: 0.5em;
     right: 0.5em;
+}
+
+.today {
+    box-shadow: inset 0 0 20px 5px rgba(255, 255, 255, 0.404);
 }
 
 .disabled {
@@ -166,46 +166,57 @@ body {
     background: linear-gradient(to right, #ec008c
     , #fc6767);
   }
+  
   .February{
     background: linear-gradient(to right,  #B993D6 
     , #8CA6DB);
   }
+
   .March{
     background: linear-gradient(to right, #EECDA3
     , #EF629F);
   }
+
   .April{
     background: linear-gradient(to right, #4ECDC4
     , #0b8793);
   }
+
   .May{
     background: linear-gradient(to right, #11998e
     , #38ef7d);
   }
+
   .June{
     background: linear-gradient(to right, #ff9966
     , #ff5e62);
   }
+
   .July{
-    background: linear-gradient(to right, #FDC830
-    , #F37335);
+    background: linear-gradient(to right, #FFE000
+    , #799F0C);
   }
+
   .August{
     background: linear-gradient(to right, #FF416C
     , #FF4B2B);
   }
+
   .September {
     background: linear-gradient(to right, #00d2ff
     , #3a7bd5);
   }
+
   .October{
-    background: linear-gradient(to right, #7474BF
-    , #348AC7);
+    background: linear-gradient(to right, #FDC830
+    , #F37335);
   }
+
   .November{
     background: linear-gradient(to right, #ddd6f3
     , #faaca8);
   }
+
   .December{
     background: linear-gradient(to right, #4CA1AF
     , #C4E0E5);

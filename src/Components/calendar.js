@@ -9,7 +9,7 @@ class Calendar extends React.Component{
             selectedMonth: new Date()
     }
 
-    // Header
+    // Month/Year
 
     onClick = (e) => {
         if (e.target.classList.contains('arrow-f')) {
@@ -39,9 +39,9 @@ class Calendar extends React.Component{
                 </div>
             </div>
      )
-    }
+    } // end month/year
 
-    // Days of the Week
+    // Weekday headings
 
     days() {
         const dateFormat = "ddd";
@@ -60,9 +60,9 @@ class Calendar extends React.Component{
         return (
             <div className="flex-row">{days}</div>
         )
-    }
+    } // end weekday headings
 
-    // Weeks of the Month
+    // Calendar content
 
     weeks() {
         const monthStart = dateFns.startOfMonth(this.state.currentMonth);
@@ -83,10 +83,12 @@ class Calendar extends React.Component{
               const cloneDay = day;
               days.push(
                 <div
-                  className={`cell ${!dateFns.isSameMonth(day, monthStart)
-                  ? "disabled": ""}`}
+                  className={`cell 
+                  ${!dateFns.isSameMonth(day, monthStart) ? "disabled": ""} 
+                  ${dateFns.isToday(day, monthStart) ? "today": ""}
+                  `}
                   key={day}
-                  onClick={() => this.selectDay(dateFns.parse(cloneDay))}
+                  onClick={() => this.appointment(dateFns.parse(cloneDay))}
                 >
                   <span className="number">{formattedDate}</span>
                 </div>
@@ -102,20 +104,17 @@ class Calendar extends React.Component{
           }
 
         return(
-            <div className="grid">{weeks}</div>
+            <div className="grid flex-col">{weeks}</div>
         )
+    } // calendar content
 
-
-    }
-
-    selectDay = day => {
+    appointment = day => {
 
     }
 
     
 
-
-
+    // render content
 
     render() {
         return (
