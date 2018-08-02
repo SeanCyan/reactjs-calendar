@@ -6,7 +6,6 @@ class Calendar extends React.Component{
 
     state = {
             currentMonth: new Date(),
-            selectedMonth: new Date()
     }
 
     // Month/Year
@@ -80,17 +79,15 @@ class Calendar extends React.Component{
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
               formattedDate = dateFns.format(day, dateFormat);
-              const cloneDay = day;
               days.push(
                 <div
                   className={`cell 
                   ${!dateFns.isSameMonth(day, monthStart) ? "disabled": ""} 
                   ${dateFns.isToday(day, monthStart) ? "today": ""}
                   `}
-                  key={day}
-                  onClick={() => this.appointment(dateFns.parse(cloneDay))}
-                >
+                  key={day}>
                   <span className="number">{formattedDate}</span>
+                  <textarea className="appt"></textarea>
                 </div>
               );
               day = dateFns.addDays(day, 1);
@@ -107,12 +104,6 @@ class Calendar extends React.Component{
             <div className="grid flex-col">{weeks}</div>
         )
     } // calendar content
-
-    appointment = day => {
-
-    }
-
-    
 
     // render content
 

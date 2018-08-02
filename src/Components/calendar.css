@@ -158,10 +158,6 @@ body {
 
   /* color changer */
 
-  .switch {
-    transition: 0.2s ease-out;
-  }
-
   .January {
     background: linear-gradient(to right, #ec008c
     , #fc6767);
@@ -225,15 +221,23 @@ body {
   /* text cells */
 
   .appt {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: none;
-    resize: none;
-    font-family: inherit;
-    background-color: rgba(255, 255, 255, 0);
-    height: 60%;
-    width: 100%;    
-    color: #fff;
+    display: none;
+}
+
+@media all and (min-width: 768px) {
+
+    .appt {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: none;
+        resize: none;
+        font-family: inherit;
+        background-color: rgba(255, 255, 255, 0);
+        height: 60%;
+        width: 99%;    
+        color: #fff;
+    }
 }
