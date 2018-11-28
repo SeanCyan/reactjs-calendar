@@ -2,10 +2,13 @@ import React from 'react';
 import './calendar.css';
 import dateFns from "date-fns";
 
+
+
 class Calendar extends React.Component{
 
     state = {
             currentMonth: new Date(),
+            isVisible: false,
     }
 
     // Month/Year
@@ -63,6 +66,26 @@ class Calendar extends React.Component{
 
     // Calendar content
 
+    reveal = (e) => {
+        if (this.state.isVisible == false) {
+            this.setState({
+                isVisible: true,
+            })
+            e.target.querySelector('.content').classList.add('content-show');
+        }
+    };
+
+    hide = (e) => {
+        if (this.state.isVisible == true) {
+            this.setState({
+                isVisible: false,
+            })
+            e.target.classList.remove('content-show');
+        }
+    };
+
+
+
     weeks() {
         const monthStart = dateFns.startOfMonth(this.state.currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
@@ -75,19 +98,26 @@ class Calendar extends React.Component{
         let days = [];
         let day = startDate;
         let formattedDate = "";
+        let contentDate = ""
 
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
               formattedDate = dateFns.format(day, dateFormat);
+              contentDate = dateFns.format(day, "D MMMM YY");
               days.push(
                 <div
                   className={`cell 
                   ${!dateFns.isSameMonth(day, monthStart) ? "disabled": ""} 
                   ${dateFns.isToday(day, monthStart) ? "today": ""}
                   `}
+                  onClick={this.reveal}
                   key={day}>
                   <span className="number">{formattedDate}</span>
-                  <textarea className="appt"></textarea>
+                  {/* <textarea className="appt"></textarea> */}
+                  <div className={`content ${dateFns.format(this.state.currentMonth, "MMMM")+'-slide'}`} onClick={this.hide}>
+                    <h3>{contentDate}</h3>
+                    <h5>Things to Do</h5>
+                  </div>
                 </div>
               );
               day = dateFns.addDays(day, 1);
