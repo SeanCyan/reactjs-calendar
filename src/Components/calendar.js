@@ -1,5 +1,6 @@
 import React from 'react';
 import './calendar.css';
+import './content.css';
 import dateFns from "date-fns";
 
 
@@ -9,6 +10,8 @@ class Calendar extends React.Component{
     state = {
             currentMonth: new Date(),
             isVisible: false,
+            todoList: [],
+            inputValue: "",
     }
 
     // Month/Year
@@ -67,11 +70,14 @@ class Calendar extends React.Component{
     // Calendar content
 
     reveal = (e) => {
-        if (this.state.isVisible == false) {
+        if (this.state.isVisible == false &&  e.target.querySelector('.content') !== null) {
             this.setState({
                 isVisible: true,
             })
             e.target.querySelector('.content').classList.add('content-show');
+            e.target.querySelector('.todoList').classList.add('active');
+        } else {
+            return;
         }
     };
 
@@ -79,10 +85,44 @@ class Calendar extends React.Component{
         if (this.state.isVisible == true) {
             this.setState({
                 isVisible: false,
+                todoList: [],
             })
-            e.target.classList.remove('content-show');
+            e.target.parentElement.classList.remove('content-show');
+        } else {
+            return;
         }
     };
+
+    updateInputValue = (e) => {
+        this.setState({
+            inputValue: e.target.value,
+          });
+    };
+
+    addTask = () => {
+        if (this.state.inputValue == "") {
+            return
+        } else {
+        const oldList = this.state.todoList;
+        const newList = oldList.concat({value: this.state.inputValue});
+        this.setState({
+            todoList: newList,
+        });
+       }
+    }
+
+    deleteTask = (e) => {
+        let id = e.target.id;
+        let deletedList = this.state.todoList.filter(el => el.value !== id);
+        this.setState({
+            todoList: deletedList,
+        });
+    }
+
+    completeTask = (e) => {
+        e.target.parentElement.style.textDecoration = "line-through"
+        console.log(e.target.parentElement);
+    } 
 
 
 
@@ -113,10 +153,20 @@ class Calendar extends React.Component{
                   onClick={this.reveal}
                   key={day}>
                   <span className="number">{formattedDate}</span>
-                  {/* <textarea className="appt"></textarea> */}
-                  <div className={`content ${dateFns.format(this.state.currentMonth, "MMMM")+'-slide'}`} onClick={this.hide}>
+                  <div className={`content ${dateFns.format(this.state.currentMonth, "MMMM")+'-slide'}`}>
+                    <span className="closeBtn" onClick={this.hide}>✕</span>
                     <h3>{contentDate}</h3>
                     <h5>Things to Do</h5>
+                    <input  type="text" className="addTodo" onChange={e => this.updateInputValue(e)} placeholder="Today I need to..." />
+                    <span onClick={this.addTask} className="addBtn">Add</span>
+                    <ul className="todoList">
+                        {this.state.todoList.map( (task, index) =>
+                                <li key={index} id={task.value} className="todoListItem">{task.value.toUpperCase()}
+                                    <span className="completeBtn" id={task.value} onClick={e => this.completeTask(e)}>✓</span>
+                                    <span className="deleteBtn" id={task.value} onClick={e => this.deleteTask(e)}>✕</span>
+                                </li>
+                         )}
+                    </ul>
                   </div>
                 </div>
               );
